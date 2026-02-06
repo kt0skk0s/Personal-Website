@@ -218,70 +218,85 @@ section {
 /* --- Footer --- */
 footer { padding: 4rem 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-/* --- Mobile Responsive & Menu Styling --- */
+/* --- Mobile Responsive & Menu Styling (ΔΙΟΡΘΩΜΕΝΟ) --- */
 @media (max-width: 900px) {
-    .hero-title { font-size: 3rem; }
+    
+    /* 1. Διόρθωση Τίτλου: Αφαιρούμε το gradient και βάζουμε καθαρό λευκό */
+    .hero-title { 
+        font-size: 3rem;
+        background: none; /* Όχι gradient στο κινητό */
+        -webkit-text-fill-color: initial; /* Επαναφορά χρώματος */
+        color: #ffffff; /* Καθαρό λευκό */
+        text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Λίγη σκιά για να ξεχωρίζει */
+    }
+
+    .hero-desc {
+        font-size: 1.1rem;
+        color: #d1d5db; /* Πιο φωτεινό γκρι για να διαβάζεται */
+    }
+
     .project-card { grid-template-columns: 1fr; }
     .p-visual { height: 200px; }
     
     /* Εμφάνιση του κουμπιού μενού */
     .menu-btn { 
         display: block; 
-        z-index: 1001; /* Να είναι πάντα πάνω από το μενού */
+        z-index: 1001;
         position: relative;
+        color: #ffffff; /* Σιγουρεύουμε ότι το κουμπί είναι λευκό */
     }
 
     /* Στυλ για το Mobile Menu */
     nav ul {
-        position: fixed; /* Κλειδώνει στην οθόνη */
+        position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Πιάνει όλο το ύψος */
-        background: rgba(10, 10, 10, 0.96); /* Σχεδόν μαύρο */
-        backdrop-filter: blur(20px); /* Εφέ θολώματος από πίσω */
-        flex-direction: column; /* Κάθετη διάταξη */
-        justify-content: center; /* Κεντράρισμα στον άξονα Υ */
-        align-items: center; /* Κεντράρισμα στον άξονα Χ */
-        gap: 3rem; /* Μεγάλο κενό μεταξύ των links */
+        height: 100vh;
+        background: #0a0a0a; /* Καθαρό μαύρο χρώμα, όχι transparent */
         
-        /* Animation Εισόδου */
-        transform: translateY(-100%); /* Κρυμμένο πάνω */
-        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth κίνηση */
+        display: flex; /* Σημαντικό για να δουλέψει το κεντράρισμα */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        
+        /* Animation */
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out;
         z-index: 1000;
         
-        /* Αφαίρεση κουκκίδων */
-        list-style: none;
+        /* Διόρθωση για τις κουκκίδες - Το !important είναι αναγκαίο εδώ */
+        list-style-type: none !important;
+        list-style: none !important;
         padding: 0;
         margin: 0;
     }
 
     /* Όταν ανοίγει το μενού */
     nav ul.active {
-        transform: translateY(0); /* Κατεβαίνει κάτω */
+        transform: translateY(0);
     }
 
     /* Στυλ των Links στο κινητό */
     nav a {
-        font-family: 'Space Grotesk', sans-serif; /* Η μοντέρνα γραμματοσειρά */
-        font-size: 2.5rem; /* Πολύ μεγάλα γράμματα */
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2rem;
         font-weight: 700;
-        color: var(--text-muted);
+        color: #e5e7eb; /* Πολύ ανοιχτό γκρι */
         text-decoration: none;
-        transition: 0.3s;
-        position: relative;
+        display: block; /* Για να πιάνει χώρο */
     }
 
-    /* Εφέ όταν ακουμπάς το δάχτυλο */
     nav a:hover {
-        color: var(--text-main);
-        letter-spacing: 2px; /* Ανοίγουν τα γράμματα */
+        color: var(--primary);
+        transform: scale(1.1);
     }
 
-    /* Ειδικά για το "Hire Me" να ξεχωρίζει */
-    nav a[href^="mailto"] {
+    /* Ειδικά για το "Hire Me" */
+    nav a[href^="#contact"] {
         color: var(--primary);
-        border: 1px solid rgba(59, 130, 246, 0.3);
+        border: 2px solid var(--primary);
         padding: 0.5rem 2rem;
         border-radius: 50px;
     }
