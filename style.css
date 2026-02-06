@@ -218,85 +218,66 @@ section {
 /* --- Footer --- */
 footer { padding: 4rem 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-/* --- Mobile Responsive & Menu Styling (ΔΙΟΡΘΩΜΕΝΟ) --- */
+/* --- Mobile Responsive & Menu Styling (ΑΥΣΤΗΡΑ ΜΟΝΟ ΓΙΑ ΤΟ ΜΕΝΟΥ) --- */
 @media (max-width: 900px) {
     
-    /* 1. Διόρθωση Τίτλου: Αφαιρούμε το gradient και βάζουμε καθαρό λευκό */
-    .hero-title { 
-        font-size: 3rem;
-        background: none; /* Όχι gradient στο κινητό */
-        -webkit-text-fill-color: initial; /* Επαναφορά χρώματος */
-        color: #ffffff; /* Καθαρό λευκό */
-        text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Λίγη σκιά για να ξεχωρίζει */
-    }
-
-    .hero-desc {
-        font-size: 1.1rem;
-        color: #d1d5db; /* Πιο φωτεινό γκρι για να διαβάζεται */
-    }
-
+    /* Βασικές προσαρμογές διάταξης (όχι χρώματα) */
     .project-card { grid-template-columns: 1fr; }
     .p-visual { height: 200px; }
     
-    /* Εμφάνιση του κουμπιού μενού */
+    /* --- 1. Κουμπί Μενού (Hamburger) --- */
     .menu-btn { 
         display: block; 
-        z-index: 1001;
+        z-index: 1001; 
         position: relative;
-        color: #ffffff; /* Σιγουρεύουμε ότι το κουμπί είναι λευκό */
+        /* Δεν βάζουμε χρώμα εδώ, θα πάρει το default του site */
     }
 
-    /* Στυλ για το Mobile Menu */
+    /* --- 2. Το Κυρίως Μενού (Λίστα) --- */
     nav ul {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
-        background: #0a0a0a; /* Καθαρό μαύρο χρώμα, όχι transparent */
+        height: 100vh; /* Πιάνει όλη την οθόνη */
+        background: #0a0a0a; /* Μαύρο φόντο για να μην βλέπεις το από πίσω */
         
-        display: flex; /* Σημαντικό για να δουλέψει το κεντράρισμα */
+        /* Κεντράρισμα των Links */
+        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 2.5rem;
+        gap: 3rem; 
         
-        /* Animation */
+        /* Κίνηση εμφάνισης */
         transform: translateY(-100%);
-        transition: transform 0.4s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
         z-index: 1000;
         
-        /* Διόρθωση για τις κουκκίδες - Το !important είναι αναγκαίο εδώ */
-        list-style-type: none !important;
-        list-style: none !important;
+        /* !!! ΕΔΩ ΕΙΝΑΙ Η ΛΥΣΗ ΓΙΑ ΤΙΣ ΤΕΛΕΙΕΣ !!! */
+        list-style: none !important; /* Εξαφανίζει τις κουκκίδες με το ζόρι */
         padding: 0;
         margin: 0;
     }
 
-    /* Όταν ανοίγει το μενού */
+    /* Όταν πατάς το κουμπί */
     nav ul.active {
         transform: translateY(0);
     }
 
-    /* Στυλ των Links στο κινητό */
+    /* --- 3. Τα Links μέσα στο μενού --- */
     nav a {
         font-family: 'Space Grotesk', sans-serif;
-        font-size: 2rem;
+        font-size: 2.5rem; /* Μεγάλα γράμματα για το κινητό */
         font-weight: 700;
-        color: #e5e7eb; /* Πολύ ανοιχτό γκρι */
+        /* Δεν αλλάζουμε χρώματα, παίρνει τα global */
         text-decoration: none;
-        display: block; /* Για να πιάνει χώρο */
+        display: block;
     }
 
-    nav a:hover {
-        color: var(--primary);
-        transform: scale(1.1);
-    }
-
-    /* Ειδικά για το "Hire Me" */
+    /* Ειδικά για το Hire Me κουμπί */
     nav a[href^="#contact"] {
-        color: var(--primary);
-        border: 2px solid var(--primary);
+        border: 1px solid var(--primary);
         padding: 0.5rem 2rem;
         border-radius: 50px;
     }
