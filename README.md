@@ -7,8 +7,8 @@
 
 > A modern, fully responsive personal portfolio website designed to showcase my software engineering journey, technical skills, and projects.
 
-![Portfolio Preview](./preview.png)
-*(Add a screenshot of your site here named preview.png)*
+[<img width="1870" height="762" alt="image" src="https://github.com/user-attachments/assets/d656ebc4-ecea-4a4e-a939-ed7a83bfe058" />](https://kt0skk0s.github.io/Personal-Website/)
+
 
 ## 🚀 Overview
 
@@ -42,18 +42,6 @@ The portfolio highlights several key engineering projects:
 | **Battleship** | C++, OOP | Strategy game engine with custom algorithms. |
 | **SQL vs NoSQL** | SQL, MongoDB | Comparative analysis of database architectures. |
 | **Energy Systems** | Python, Pandas | Data analysis of household electricity consumption. |
-
-## 🚀 How to Run Locally
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/kt0skk0s/Personal-Website.git](https://github.com/kt0skk0s/Personal-Website.git)
-    ```
-2.  **Navigate to the project folder:**
-    ```bash
-    cd Personal-Website
-    ```
-3.  **Open `index.html`** in your browser or use a Live Server extension in VS Code.
 
 ## 📬 Contact
 
