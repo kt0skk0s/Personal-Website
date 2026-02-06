@@ -48,7 +48,14 @@ header {
     align-items: center;
 }
 
-.logo { font-size: 1.5rem; font-weight: 700; background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 700; 
+    background: var(--gradient-main); 
+    -webkit-background-clip: text; 
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+}
 
 nav ul { display: flex; gap: 2rem; }
 nav a { font-weight: 500; font-size: 0.9rem; color: var(--text-muted); position: relative; }
@@ -74,6 +81,7 @@ nav a:hover::after { width: 100%; }
 }
 
 .hero-badge {
+    margin-top: 25px;
     background: rgba(59, 130, 246, 0.1);
     color: var(--primary);
     padding: 0.5rem 1rem;
@@ -87,12 +95,13 @@ nav a:hover::after { width: 100%; }
 
 .hero-title {
     font-size: 4.5rem;
-    line-height: 1.1;
+    line-height: 1.3;
     font-weight: 700;
     margin-bottom: 1.5rem;
     background: linear-gradient(to right, #fff, #9ca3af);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;   
 }
 
 .hero-desc {
@@ -218,66 +227,98 @@ section {
 /* --- Footer --- */
 footer { padding: 4rem 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
 
-/* --- Mobile Responsive & Menu Styling (ΑΥΣΤΗΡΑ ΜΟΝΟ ΓΙΑ ΤΟ ΜΕΝΟΥ) --- */
+/* --- CSS-Only Scroll Animation --- */
+
+@keyframes autoShow {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.project-card, 
+.tech-category, 
+.t-item, 
+.section-header {
+    animation: autoShow linear both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
+}
+
+/* --- Mobile Responsive & Menu Styling --- */
 @media (max-width: 900px) {
-    
-    /* Βασικές προσαρμογές διάταξης (όχι χρώματα) */
+    .hero-title { 
+        font-size: 3rem;
+        line-height: 1.3; 
+    }
     .project-card { grid-template-columns: 1fr; }
     .p-visual { height: 200px; }
     
-    /* --- 1. Κουμπί Μενού (Hamburger) --- */
+    /* Εμφάνιση του κουμπιού μενού */
     .menu-btn { 
         display: block; 
         z-index: 1001; 
-        position: relative;
-        /* Δεν βάζουμε χρώμα εδώ, θα πάρει το default του site */
+        position: absolute; 
+        right: 5%;          
+        top: 50%;           
+        transform: translateY(-50%);
     }
 
-    /* --- 2. Το Κυρίως Μενού (Λίστα) --- */
+    /* Στυλ για το Mobile Menu */
     nav ul {
-        position: fixed;
+        position: fixed; /* Κλειδώνει στην οθόνη */
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Πιάνει όλη την οθόνη */
-        background: #0a0a0a; /* Μαύρο φόντο για να μην βλέπεις το από πίσω */
+        height: 100vh; /* Πιάνει όλο το ύψος */
+        background: rgba(10, 10, 10, 0.96); /* Σχεδόν μαύρο */
+        backdrop-filter: blur(20px); /* Εφέ θολώματος από πίσω */
+        flex-direction: column; /* Κάθετη διάταξη */
+        justify-content: center; /* Κεντράρισμα στον άξονα Υ */
+        align-items: center; /* Κεντράρισμα στον άξονα Χ */
+        gap: 3rem; /* Μεγάλο κενό μεταξύ των links */
         
-        /* Κεντράρισμα των Links */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem; 
-        
-        /* Κίνηση εμφάνισης */
-        transform: translateY(-100%);
-        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        /* Animation Εισόδου */
+        transform: translateY(-100%); /* Κρυμμένο πάνω */
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Smooth κίνηση */
         z-index: 1000;
         
-        /* !!! ΕΔΩ ΕΙΝΑΙ Η ΛΥΣΗ ΓΙΑ ΤΙΣ ΤΕΛΕΙΕΣ !!! */
-        list-style: none !important; /* Εξαφανίζει τις κουκκίδες με το ζόρι */
+        /* Αφαίρεση κουκκίδων */
+        list-style: none;
         padding: 0;
         margin: 0;
     }
 
-    /* Όταν πατάς το κουμπί */
+    /* Όταν ανοίγει το μενού */
     nav ul.active {
-        transform: translateY(0);
+        transform: translateY(0); /* Κατεβαίνει κάτω */
     }
 
-    /* --- 3. Τα Links μέσα στο μενού --- */
+    /* Στυλ των Links στο κινητό */
     nav a {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2.5rem; /* Μεγάλα γράμματα για το κινητό */
+        font-family: 'Space Grotesk', sans-serif; /* Η μοντέρνα γραμματοσειρά */
+        font-size: 2.5rem; /* Πολύ μεγάλα γράμματα */
         font-weight: 700;
-        /* Δεν αλλάζουμε χρώματα, παίρνει τα global */
+        color: var(--text-muted);
         text-decoration: none;
-        display: block;
+        transition: 0.3s;
+        position: relative;
     }
 
-    /* Ειδικά για το Hire Me κουμπί */
-    nav a[href^="#contact"] {
-        border: 1px solid var(--primary);
+    /* Εφέ όταν ακουμπάς το δάχτυλο */
+    nav a:hover {
+        color: var(--text-main);
+        letter-spacing: 2px; /* Ανοίγουν τα γράμματα */
+    }
+
+    /* Ειδικά για το "Hire Me" να ξεχωρίζει */
+    nav a[href^="mailto"] {
+        color: var(--primary);
+        border: 1px solid rgba(59, 130, 246, 0.3);
         padding: 0.5rem 2rem;
         border-radius: 50px;
     }
